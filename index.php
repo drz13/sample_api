@@ -53,7 +53,7 @@ $app->get('/employees', function() {
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     } else {
-	    $result = $mysqlConnection->query($sql);
+	    $result = $conn->query($sql);
 		
 		if (!$result) {
 		    throw new Exception("Database Error [{$this->database->errno}] {$this->database->error}");
@@ -64,7 +64,7 @@ $app->get('/employees', function() {
 			echo json_encode($array);	//	Echo result in JSON
 		}
 		
-		$mysqlConnection->close();
+		$conn->close();
     }
 });
 
