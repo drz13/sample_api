@@ -74,7 +74,7 @@ $app->get('/customers', function() {
 	$dbServerName = "localhost";
     $dbUser = "root";
     $dbPassword = "";
-    $dbName = "sample";
+    $dbName = "team3";
 	
 	$result = NULL;
     
