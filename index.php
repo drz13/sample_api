@@ -35,14 +35,13 @@ $app->get('/', function () {
 	echo phpinfo();       
 });
 
-
 //	Get all names
 $app->get('/employees', function() {
-	$sql = "SELECT names FROM Employee";
-	
+	$sql = "SELECT name FROM Employee";
+
 	$dbServerName = "localhost";
-    $dbUser = "username";
-    $dbPassword = "password";
+    $dbUser = "root";
+    $dbPassword = "";
     $dbName = "sample";
 	
 	$result = NULL;
@@ -70,11 +69,11 @@ $app->get('/employees', function() {
 });
 
 $app->get('/customers', function() {
-	$sql = "SELECT names FROM Customer";
-	
+	$sql = "SELECT name FROM customer";
+
 	$dbServerName = "localhost";
-    $dbUser = "username";
-    $dbPassword = "password";
+    $dbUser = "root";
+    $dbPassword = "";
     $dbName = "sample";
 	
 	$result = NULL;
@@ -86,7 +85,7 @@ $app->get('/customers', function() {
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     } else {
-	    $result = $mysqlConnection->query($sql);
+	    $result = $conn->query($sql);
 		
 		if (!$result) {
 		    throw new Exception("Database Error [{$this->database->errno}] {$this->database->error}");
@@ -97,7 +96,7 @@ $app->get('/customers', function() {
 			echo json_encode($array);	//	Echo result in JSON
 		}
 		
-		$mysqlConnection->close();
+		$conn->close();
     }
 });
 
